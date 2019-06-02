@@ -9,17 +9,17 @@ FPS = 60                                #Frames per second
 
 birdHeight = 35                              #Height of the bird
 birdWidth = 48                               #Width of the bird
-jumpSteps = 15                               #Pixels to move
-jumpPixels = 4                               #Pixels per frame
-dropPixels = 3                               #Pixels per frame
+jumpSteps = 10                               #Pixels to move
+jumpPixels = 6                               #Pixels per frame Korean : 점프 속도 설정 default : 4
+dropPixels = 5                               #Pixels per frame Korean : 하강 속도 설정 default : 3
 
-groundHeight = 73                            #Height of the ground
+groundHeight = 73                            #Height of the ground #default : 73
 pipeWidth = 52                               #Width of a pipe
 pipeHeight = 320                             #Max Height of a pipe
 pipesSpace = 4 * birdHeight                  #Space between pipes
-pipesAddInterval = 2000                      #Milliseconds
+pipesAddInterval = 1150                      #Milliseconds
 
-pixelsFrame = 2                              #Pixels per frame
+pixelsFrame = 3                              #Pixels per frame Korean : 맵 이동 설정
 getNewPipe = USEREVENT + 1                   #Custom event
 
 pygame.init()                                #Initialize pygame
