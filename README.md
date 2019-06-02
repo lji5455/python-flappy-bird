@@ -7,7 +7,7 @@ This is a Flappy Bird clone, one of my first python projects. It was made using 
 1. Install Python 2.7.X from [here](https://www.python.org/download/releases/)
 2. Install PyGame 1.9.X from [here](http://www.pygame.org/download.shtml)
 3. Clone this repository: `git clone https://github.com/PopAdi/python-flappy-bird.git` or click `Download ZIP` in the right panel and extract it.
-4. Run `python Flappy\ Bird.py` from the repo's directory
+4. Run `python FlappyBird.py` from the repo's directory
 5. Use <kbd>Space</kbd> or left-mouse-button to jump or <kbd>Esc</kbd> to exit.
 
 ![image-1](http://i.imgur.com/b2AfQZm.png?1)
