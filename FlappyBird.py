@@ -31,11 +31,13 @@ def main():
         #Draw everything and waitClick for the user to click to start the game
         #When we click somewhere, the bird will jump and the game will start
         screen.blit(gameImages['background'], (0, 0))
-        draw_text(screen, "Click to start", 285, 20)
+        draw_text(screen, "Click to start", 265, 35)
+        draw_text(screen, "Tutorial", 305, 20)
+        draw_text(screen, "Up Arrow / Space / Mouse Button : Jump", 325, 15)
         screen.blit(gameImages['ground'], (0, gameHeight - groundHeight))
 
         #Drawing a "floating" flappy bird
-        gameBird.redraw(screen, gameImages['bird'], gameImages['bird2'])
+        gameBird.redraw(screen, gameImages['bird'], gameImages['bird2'], gameImages['bird3'])
 
         #Updating the screen
         pygame.display.update()
@@ -43,7 +45,7 @@ def main():
         #Checking if the user pressed left click or space and start (or not) the game
         for e in pygame.event.get():
             if e.type == pygame.MOUSEBUTTONDOWN or (e.type == pygame.KEYDOWN and e.key == K_SPACE):
-                gameBird.steps_to_jump = 15
+                gameBird.steps_to_jump = 15 #before 15
                 gameVariables.waitClick = False
     jump_sound.play()
     
@@ -62,6 +64,9 @@ def main():
                 jump_sound.play()
             elif e.type == pygame.KEYDOWN:
                 if e.key == K_SPACE:
+                    gameBird.steps_to_jump = jumpSteps
+                    jump_sound.play()
+                if e.key == K_UP:
                     gameBird.steps_to_jump = jumpSteps
                     jump_sound.play()
                 elif e.key == K_ESCAPE:
@@ -85,7 +90,7 @@ def main():
         
         #Updating the bird position and redrawing it
         gameBird.update_position()
-        gameBird.redraw(screen, gameImages['bird'], gameImages['bird2'])
+        gameBird.redraw(screen, gameImages['bird'], gameImages['bird2'], gameImages['bird3'])
 
         #Checks for any collisions between the gamePipes, bird and/or the lower and the
         #upper part of the screen
