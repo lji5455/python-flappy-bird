@@ -9,7 +9,6 @@ def initialize_pygame():
     #Opening the window in the center of the screen
     os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % ((screenResolution.current_w - gameWidth) / 2, (screenResolution.current_h - gameHeight) / 2)
     screen = pygame.display.set_mode([gameWidth, gameHeight], pygame.DOUBLEBUF, 32)
-    pygame.display.set_icon(pygame.image.load('images/icon.ico'))
     pygame.display.set_caption("Flappy Bird")
 
     return screen
@@ -40,6 +39,7 @@ def load_images():
     return {'background': load_image('background_' + str(random.randint(1, 2)) + '.png'),
             'bird': load_image('bird.png'),
             'bird2': load_image('bird2.png'),    
+            'bird3': load_image('bird3.png'),
             'pipe-up': load_image('pipe-up.png'), 
             'pipe-down': load_image('pipe-down.png'),
             'ground': load_image('ground.png')}
@@ -60,18 +60,8 @@ def end_the_game(screen, gameScore):
     #Draws a rectangle & shows the gameScore & updates the highscore
     pygame.draw.rect(screen, (0, 0, 0), (23, gameHeight / 2 - 77, 254, 154))
     pygame.draw.rect(screen, (239, 228, 150), (25, gameHeight / 2 - 75, 250, 150))
-    draw_text(screen, "Your Score: " + str(gameScore), 200, 35)
-    
-    f = open("data/highscore", "r+")
-    hs = int(f.readline())
-    if(gameScore > hs):
-       hs = gameScore
-       f.seek(0)
-       f.truncate()
-       f.write(str(hs))
-    f.close()
-    
-    draw_text(screen, "Highscore: " + str(hs), 250, 35)
+
+    draw_text(screen, "Game Over!", 250, 35)
     draw_text(screen, "Press space to restart", 335, 20)
     draw_text(screen, "Press esc to exit", 355, 20)
     
@@ -83,6 +73,29 @@ def end_the_game(screen, gameScore):
         for e in pygame.event.get():
             if e.type == pygame.KEYDOWN:
                 if e.key == K_SPACE:
-                    return 0
+                    return 0 #Try Again.
                 elif e.key == K_ESCAPE:
-                    return 1
+                    return 1 #Exit to Game.
+def paused():
+
+    largeText = pygame.font.SysFont("comicsansms",115)
+    TextSurf, TextRect = text_objects("Paused", largeText)
+    TextRect.center = ((display_width/2),(display_height/2))
+    gameDisplay.blit(TextSurf, TextRect)
+    
+
+    while pause:
+        for event in pygame.event.get():
+
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+                
+        #gameDisplay.fill(white)
+        
+
+        button("Continue",150,450,100,50,green,bright_green,unpause)
+        button("Quit",550,450,100,50,red,bright_red,quitgame)
+
+        pygame.display.update()
+        clock.tick(15)  
