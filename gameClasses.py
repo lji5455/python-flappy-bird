@@ -7,8 +7,8 @@ class Bird:
     #- The class for the bird; the x position is always the same, we only
     #update the y position when we fall or jump, based on a formula
     def __init__(self):
-        self.bird_x = gameWidth / 2 - birdWidth
-        self.bird_y = gameHeight / 2 - birdHeight / 2
+        self.bird_x = gameWidth / 3 - birdWidth
+        self.bird_y = gameHeight / 3 - birdHeight / 3
         self.steps_to_jump = 0
 
     #The formula used makes everything to move "smooth"
@@ -22,7 +22,7 @@ class Bird:
 
     #- When we redraw the bird on the game screen, we draw the wing-up or
     #the wing-down image, to create the "flapping" effect
-    def redraw(self, screen, image_1, image_2):
+    def redraw(self, screen, image_1, image_2, image_3):
         if pygame.time.get_ticks() % 500 >= 250 :
             screen.blit(image_1, (self.bird_x, self.bird_y))
         else:
