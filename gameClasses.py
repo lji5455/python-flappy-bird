@@ -24,9 +24,9 @@ class Bird:
     #the wing-down image, to create the "flapping" effect
     def redraw(self, screen, image_1, image_2, image_3):
         if pygame.time.get_ticks() % 500 >= 250 :
-            screen.blit(image_1, (self.bird_x, self.bird_y))
-        else:
             screen.blit(image_2, (self.bird_x, self.bird_y))
+        else:
+            screen.blit(image_3, (self.bird_x, self.bird_y))
 
     #Rotating the bird to create the falling effect
     def redraw_dead(self, screen, image):
